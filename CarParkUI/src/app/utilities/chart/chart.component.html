@@ -1,0 +1,3 @@
+<canvasjs-chart *ngIf="currUser?.role=='SystemAdmin'" [options]="chartCompaniesOptions" [styles]="{width: '100%', height:'55vh'}"></canvasjs-chart>
+
+<canvasjs-chart *ngIf="currUser?.role=='CompanyAdmin'" [options]="chartUsersOptions" [styles]="{width: '100%', height:'55vh'}"></canvasjs-chart>      

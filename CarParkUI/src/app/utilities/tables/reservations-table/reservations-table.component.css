@@ -1,0 +1,30 @@
+table{
+    background-color: rgba(37, 37, 37,0.2);
+    width: 50%;
+    height: 200vh;
+    color:#ffbb00;
+}
+h2{
+    color:#ffbb00;
+}
+.bi-x-circle{
+    color:#ffbb00;
+}
+.pages{
+    background: none;
+    background-color: none;
+    border: none;
+    color:#ffbb00;
+}
+tr:nth-child(odd){
+    color:white;
+}
+.search{
+    height: 25px;
+    border: none;
+    background-color: #383838;
+    color:white;
+}
+span{
+    color:#ffbb00;
+}

@@ -1,0 +1,17 @@
+  /*#### Main ####*/
+  .main-wrapper{
+    display: grid;
+    grid-template-columns: 0.2fr 1fr;
+    grid-template-areas: "nav main";
+    height: 100%;
+  }
+  .nav{
+    grid-area: "nav";
+    height: 100vh;
+    position: sticky;
+    top:0;
+  }
+  .main{
+    overflow: auto;
+    grid-area: "main";
+  }

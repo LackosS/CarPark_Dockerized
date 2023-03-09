@@ -1,0 +1,29 @@
+<ng-template #addSlotModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add slot</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body" data-test-id="slot-add-modal">
+        <form class="addSlotForm" [formGroup]="formAddSlot">
+            <div>
+                <div class="d-flex flex-row gap-2 p-1 px-2">
+                    <input formControlName="slotnumber" type="text" id="slotnumber" name="slotnumber" placeholder="Slot number">
+                    <select formControlName="type" id="inputPosition" name="type" class="form-select">
+                        <option>Disabled</option>
+                        <option>VIP</option>
+                        <option>Electric</option>
+                        <option selected>Default</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer user-footer justify-content-center">
+        <button data-test-id="slot-add-modal-cancel" type="button" class="btn btn-outline-secondary" (click)="modal.close('cancel click')">Cancel</button>
+        <button data-test-id="slot-add-modal-submit" class="addslot" type="submit" class="btn" 
+            (click)="addSlot(this.select)">Register</button>
+    </div>
+</ng-template>
+<div class="user-footer">
+    <button data-test-id="slot-add-modal-open" class="btn float-end mx-1" (click)="open(addSlotModal)">Add slot</button>
+</div>

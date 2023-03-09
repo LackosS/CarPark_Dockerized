@@ -1,0 +1,84 @@
+<div class="container">
+	<form data-test-id="parkinghouse-table" class="parkinghouse-table h-100">
+		<h2 class="fs-3 my-2 mt-4">Parkinghouses</h2>
+		<hr style="color:#ffbb00">
+		<span>Search:</span>
+		<input #search id="table-complete-search" type="text" class="search mt-1 mb-3 form-control w-25"
+			name="searchTerm" (keydown)="filterParkingHouses(search)" />
+		<table class="table h-25 w-100">
+			<thead>
+				<th scope="col">Name</th>
+				<th scope="col">Levels</th>
+				<th scope="col">Slots</th>
+				<th scope="col">Is Active</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let parkinghouse of viewParkingHouses">
+					<td>{{parkinghouse.name}}</td>
+					<td>{{parkinghouse.level}}</td>
+					<td>{{parkinghouse.slots}}</td>
+					<td>
+						<div class="checkboxouter position-relative">
+							<input class="position-absolute w-100 h-100 start-0 top-0 opacity-0" type="checkbox"
+								[checked]="parkinghouse.isActive" (change)="handleParkingHouseChanges(parkinghouse.id)"
+								data-toggle="toggle" />
+							<label class="checkbox position-absolute m-auto start-50"></label>
+						</div>
+					</td>
+					<td><app-delete-parkinghouse-modal [parkingHouses]="this.parkingHouses"
+							[viewParkingHouses]="this.viewParkingHouses"
+							[parkingHouseId]="parkinghouse.id" (handleParkingHousePageChangesEvent)="handleParkingHousePageChanges(pageNumberParkingHouse)"></app-delete-parkinghouse-modal></td>
+				</tr>
+		</table>
+		<div class="row">
+			<div class="col-10">
+				<button *ngFor="let pageNumber of pageNumbersParkingHouse" class="pages"
+					(click)="handleParkingHousePageChanges(pageNumber)">{{pageNumber}}</button>
+			</div>
+			<div class="col-2">
+				<app-add-parkinghouse-modal [Parkinghouses]="this.parkingHouses"
+					[viewParkinghouses]="this.viewParkingHouses" (handleParkingHousePageChangesEvent)="handleParkingHousePageChanges(pageNumberParkingHouse)"></app-add-parkinghouse-modal>
+			</div>
+		</div>
+
+		<form data-test-id="level-table" class="level-table h-100">
+			<h2 class="fs-3 my-2 mt-4">Levels</h2>
+			<hr style="color:#ffbb00">
+			<div class="select-phouse w-25 mb-2">
+				<span>Select a parkinghouse:</span>
+				<select data-test-id="level-table-select" #levelSelect class="form-select mt-1 inputPosition" aria-label="Select levels" (change)="getLevelsByParkingHouseId(levelSelect)">
+					<option value="-1" selected>Parkinghouses</option>
+					<option *ngFor="let phouse of parkingHouses" [value]="phouse.id">{{phouse.name}}</option>
+				</select>
+			</div>
+			<table class="table h-25 w-100">
+				<thead>
+					<th scope="col">Number</th>
+					<th scope="col">Slots</th>
+					<th scope="col">Is Active</th>
+				</thead>
+				<tbody>
+					<tr *ngFor="let level of viewLevels">
+						<td>{{level.levelNumber}}</td>
+						<td>{{level.slot}}</td>
+						<td>
+							<div class="checkboxouter position-relative">
+								<input class="position-absolute w-100 h-100 start-0 top-0 opacity-0" type="checkbox"
+									[checked]="level.isActive" (change)="handleLevelChanges(level.id)"
+									data-toggle="toggle" />
+								<label class="checkbox position-absolute m-auto start-50"></label>
+							</div>
+						</td>
+						<td><app-delete-level-modal [levels]="this.levels" [viewLevels]="this.viewLevels" (handleLevelsPageChangesEvent)="handleLevelPageChanges(this.pageNumberLevel)" [levelId]="level.id"></app-delete-level-modal></td>
+					</tr>
+			</table>
+			<div class="row">
+				<div class="col-10">
+					<button *ngFor="let pageNumber of pageNumbersLevels" class="pages" (click)="handleLevelPageChanges(pageNumber)">{{pageNumber}}</button>
+				</div>
+				<div class="col-2" *ngIf="levelSelect.value!=='-1'">
+					<app-add-level-modal [select]="levelSelect" [levels]="this.levels" [viewLevels]="this.viewLevels" (handleLevelsPageChangesEvent)="handleLevelPageChanges(this.pageNumberLevel)"></app-add-level-modal>
+				</div>
+			</div>
+		</form>
+	</form>

@@ -1,0 +1,24 @@
+/* #### MODAL #### */
+.modal-content{
+    background: linear-gradient(#1f2124, #27292c);
+    border-radius: 20px;
+    margin-top: 60px;
+}
+.backdrop-blur{
+    backdrop-filter: blur(5px);
+}
+.modal-header{
+    border-bottom: 1px solid #ffbb00;
+}
+.modal-footer{
+    border-top: 1px solid #ffbb00;
+}
+.modal-title{
+    color: #fb0;
+}
+.delete{
+    background: none;
+    background-color: none;
+    border: none;
+    color:#ffbb00;
+}

@@ -1,0 +1,87 @@
+/*#### Form ####*/
+.loginForm {
+  background: linear-gradient(to right, #252525, #383535, #272727);
+  border: 1px solid #191919;
+  border-radius: 1.4em;
+  box-shadow: 0 5px 10px 5px rgba(37, 37, 37, 0.3);
+  max-height: 19em;
+  max-width: 22em;
+  min-width: 10em;
+}
+
+.inset {
+  border-top: 1px solid #FFbb00;
+  padding: 1.2em;
+}
+
+/*#### Logo with text ####*/
+#caricon {
+  color: #FFbb00;
+  max-height: 1em;
+  max-width: 1em;
+  padding: 0.1rem;
+}
+
+.loginForm h1 {
+  text-align: center;
+  padding-bottom: 0.5rem;
+  min-width: 2em;
+}
+
+#litheader {
+  width: 3em;
+}
+
+/*#### Input fields ####*/
+.loginForm input[type=text],
+.loginForm input[type=password] {
+  background: linear-gradient(#1f2124, #27292c);
+  border: 1px solid #252525;
+  border-radius: .3em;
+  box-shadow: 0 1px 0 #ffffff1a;
+  font-size: 13px;
+  padding: 0.5rem 0.5rem;
+}
+
+.loginForm input[type=text]:hover:not([disabled]),
+.loginForm input[type=text]:focus,
+.loginForm input[type=password]:hover:not([disabled]),
+.loginForm input[type=password]:focus,
+.loginForm input[type=text]:active .loginForm input[type=password]:active,
+.loginForm input[type=text]:disabled .loginForm input[type=password]:disabled {
+  background: #27292c;
+}
+
+/*#### Button ####*/
+#buttonContainer {
+  width: 80%;
+  padding: 0.2rem;
+  margin-top: -0.9rem;
+}
+
+.signup,
+.submit {
+  background: #fb0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 1.3em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px rgba(255, 255, 255, 0.1);
+  color: #853c01;
+  cursor: pointer;
+  font-size: 85%;
+  height: 30%;
+  padding: 0.5rem 0.5rem;
+  margin-top: 0.2rem;
+  font-weight: 900;
+}
+
+.signup:hover,
+.submit:hover,
+.signup:focus,
+.submit:focus {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -10px 10px rgba(255, 255, 255, 0.3);
+}
+
+.signup:disabled,
+.submit:disabled {
+  background: rgb(156, 115, 2);
+}

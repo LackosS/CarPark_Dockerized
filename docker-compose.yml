@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  carparksystem:
+    container_name: carparksystem
+    build:
+      context: CarParkSystem
+      dockerfile: \CarParkSystem\Dockerfile
+    ports:
+      - "7154:80"
+    depends_on:
+         - db
+    command: ["dotnet", "ef", "database update"]
+  db:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: db
+    ports:
+      - "1433:1433"
+    environment:
+        SA_PASSWORD: "S3cur3P@ssW0rd!"
+        ACCEPT_EULA: "Y"
+  carparkui:
+    container_name: carparkui
+    build:
+      context: CarParkUI
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    

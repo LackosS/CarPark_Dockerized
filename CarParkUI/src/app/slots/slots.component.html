@@ -1,0 +1,43 @@
+<app-base>
+    <div class="container">
+        <h2 class="fs-3 my-2 mt-4">Slots</h2>
+        <hr style="color:#ffbb00">
+        <form data-test-id="slots-form" class="slotsForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <span>Select a parkinghouse:</span>
+                    <select data-test-id="slots-form-parkinghouse-select" #parkingHouseSelect class="form-select inputPosition"
+                        (change)="getLevelsByParkingHouseId(parkingHouseSelect)">
+                        <option selected value="-1">Parkinghouses</option>
+                        <option *ngFor="let phouse of parkingHouses" [value]="phouse.id">{{phouse.name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mt-1 mt-md-0">
+                    <span>Select a level:</span>
+                    <select data-test-id="slots-form-level-select" #levelSelect class="form-select inputPosition" (change)="getSlotsByLevelId(levelSelect)">
+                        <option selected value="-1">Levels</option>
+                        <option *ngFor="let level of levels" [value]="level.id">{{level.levelNumber}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="slots d-flex gap-1 mt-3 flex-wrap">
+                <div #card *ngFor="let slot of slots" (click)="selectSlots(slot,card)" class="slot p-1 d-flex flex-column align-items-center">
+                    <img class="card-img-top" src="/assets/images/parking.svg" alt="Parking area">
+                    <div class="card-body d-flex gap-1">
+                        <p class="card-text fs-3 mb-0">{{slot.slotNumber}}</p>
+                        <img *ngIf="slot.type==='Disabled'" class="accessibility" src="/assets/images/disabled.svg"
+                            alt="Accessibility">
+                        <img *ngIf="slot.type==='VIP'" class="accessibility" src="/assets/images/king-crown.svg"
+                            alt="Accessibility">
+                        <img *ngIf="slot.type==='Electric'" class="accessibility" src="/assets/images/electricity.svg"
+                            alt="Accessibility">
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="parkingHouseSelect.value!=='-1' && levelSelect.value!=='-1'" class="mt-2">
+                <app-add-slot-modal [slots]="this.slots" [select]="levelSelect"></app-add-slot-modal>
+                <app-edit-slots-modal [slots]="this.slots" [editSlots]="this.editSlots" (editSlotsChange)="editSlotsUpdate()" (deleteSlotsChange)="deleteSlotsUpdate()"></app-edit-slots-modal>
+            </div>
+        </form>
+    </div>
+</app-base>

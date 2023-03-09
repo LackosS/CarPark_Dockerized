@@ -1,0 +1,31 @@
+<div class="container">
+	<form class="company-table">
+		<h2 class="fs-3 my-2 mt-4">My reservations</h2>
+		<hr style="color:#ffbb00">
+		<table class="table h-25 w-100">
+			<thead>
+				<th scope="col">Parkinghouse</th>
+				<th scope="col">Level</th>
+				<th scope="col">Slot</th>
+				<th scope="col">Date</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let reservation of viewReservations">
+					<td>{{reservation.parkingHouseName}}</td>
+					<td>{{reservation.levelNumber}}</td>
+					<td>{{reservation.slotNumber}}</td>
+					<td>{{reservation.date}}</td>
+					<td><app-delete-reservation-modal [reservations]="this.reservations"
+							[viewReservations]="this.viewReservations" [reservationId]="reservation.id"
+							(handleReservationsPageChangesEvent)="handleReservationsPageChanges(this.pageNumberReservations)"></app-delete-reservation-modal>
+					</td>
+				</tr>
+		</table>
+		<div class="row">
+			<div class="col-12">
+				<button *ngFor="let pageNumber of pageNumbersReservations" class="pages"
+					(click)="handleReservationsPageChanges(pageNumber)">{{pageNumber}}</button>
+			</div>
+		</div>
+	</form>
+</div>

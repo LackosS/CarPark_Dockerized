@@ -1,0 +1,182 @@
+<app-base>
+    <div class="container" *ngIf='currUser?.role=="SystemAdmin"'>
+        <h2 class="fs-3 my-2 mt-4">Analitycs</h2>
+        <hr style="color:#ffbb00">
+        <div class="row p-1">
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalCompanies}}</h3>
+                                <span>Companies</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-buildings"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalUsers}}</h3>
+                                <span>Users</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalParkinghouses}}</h3>
+                                <span>Parkinhouses</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-p-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalReservations}}</h3>
+                                <span>Reservations</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="color:#ffbb00;">
+        <div class="row">
+            <div class="col-xl-8 col-12 p-3">
+                <app-chart></app-chart>
+            </div>
+            <div class="col-xl-4 col-sm-12 col-12 pt-1 my-auto">
+                <div class="text-center">
+                    <circle-progress [percent]='activeCompanies' [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="8"
+                        [outerStrokeColor]="'#ffbb00'" [innerStrokeColor]="'#252525'" [animation]="true"
+                        [animationDuration]="300" [titleColor]="'#ffbb00'" [subtitle]="'Active companies'"
+                        [subtitleFontSize]="'14'" [units]="''"></circle-progress>
+                </div>
+                <div class="text-center">
+                    <circle-progress [percent]='inactiveCompanies' [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="8"
+                        [outerStrokeColor]="'#ffbb00'" [innerStrokeColor]="'#252525'" [animation]="true"
+                        [animationDuration]="300" [titleColor]="'#ffbb00'" [subtitle]="'Inactive companies'"
+                        [subtitleFontSize]="'14'" [units]="''"></circle-progress>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf='currUser?.role=="CompanyAdmin"'>
+        <h2 class="fs-3 my-2 mt-4">Analitycs</h2>
+        <hr style="color:#ffbb00">
+        <div class="row p-1">
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalUsersByCompany}}</h3>
+                                <span>Users</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-buildings"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalParkinghousesByCompany}}</h3>
+                                <span>Parkinghouses</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalLevels}}</h3>
+                                <span>Levels</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-p-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 pt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-9 col-sm-6 col-6">
+                                <h3>{{totalSlots}}</h3>
+                                <span>Slots</span>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-6">
+                                <i class="bi bi-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="color:#ffbb00;">
+        <div class="row">
+            <div class="col-xl-8 col-12 p-3">
+                <app-chart></app-chart>
+            </div>
+            <div class="col-xl-4 col-sm-12 col-12 pt-1 my-auto">
+                <div class="text-center">
+                    <circle-progress [percent]='activeUsers' [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="8"
+                        [outerStrokeColor]="'#ffbb00'" [innerStrokeColor]="'#252525'" [animation]="true"
+                        [animationDuration]="300" [titleColor]="'#ffbb00'" [subtitle]="'Active users'"
+                        [subtitleFontSize]="'14'" [units]="''"></circle-progress>
+                </div>
+                <div class="text-center">
+                    <circle-progress [percent]='inactiveUsers' [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="8"
+                        [outerStrokeColor]="'#ffbb00'" [innerStrokeColor]="'#252525'" [animation]="true"
+                        [animationDuration]="300" [titleColor]="'#ffbb00'" [subtitle]="'Inactive users'"
+                        [subtitleFontSize]="'14'" [units]="''"></circle-progress>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="currUser?.role=='Boss' || currUser?.role=='Employee'">
+        <h2 class="fs-3 my-2 mt-4">Reservations</h2>
+        <hr style="color:#ffbb00">
+    </div>
+</app-base>

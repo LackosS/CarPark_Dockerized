@@ -1,0 +1,37 @@
+<div class="container">
+	<form data-test-id="company-table" class="company-table">
+		<h2 class="fs-3 my-2 mt-4">Companies</h2>
+		<hr style="color:#ffbb00">
+		<span>Search:</span>
+		<input #search id="table-complete-search" type="text" class="search mt-1 mb-3 form-control w-25"
+			name="searchTerm" (keydown)="filterCompanies(search)" />
+		<table class="table h-25 w-100">
+			<thead>
+				<th scope="col">Company name</th>
+				<th scope="col">Is Active</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let company of viewCompanies">
+					<td>{{company.name}}</td>
+					<td>
+						<div class="checkboxouter position-relative">
+							<input class="position-absolute w-100 h-100 start-0 top-0 opacity-0" type="checkbox"
+								[checked]="company.isValid" (change)="handleCompanyChanges(company.id)"
+								data-toggle="toggle" />
+							<label class="checkbox position-absolute m-auto start-50"></label>
+						</div>
+					</td>
+					<td><app-delete-company-modal [companies]="this.companies" [companyId]="company.id"
+							[viewCompanies]="this.viewCompanies"
+							(handleCompaniesPageChangesEvent)="handleCompanyPageChanges(this.pageNumberCompanies)"></app-delete-company-modal>
+					</td>
+				</tr>
+		</table>
+		<div class="row">
+			<div class="col-12">
+				<button *ngFor="let pageNumber of pageNumbersCompanies" class="pages"
+					(click)="handleCompanyPageChanges(this.pageNumber)">{{pageNumber}}</button>
+			</div>
+		</div>
+	</form>
+</div>

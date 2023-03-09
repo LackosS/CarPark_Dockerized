@@ -1,0 +1,39 @@
+<div class="container">
+	<form data-test-id="user-table" class="user-table h-100">
+		<h2 class="fs-3 my-2 mt-4">Users</h2>
+		<hr style="color:#ffbb00">
+		<span>Search:</span>
+		<input #search id="table-complete-search" type="text" class="search mt-1 mb-3 form-control w-25"
+			name="searchTerm" (keydown)="filterUsers(search)" />
+		<table class="table h-25 w-100">
+			<thead>
+				<th scope="col">Name</th>
+				<th scope="col">Role</th>
+				<th scope="col">Is Active</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of viewUsers">
+					<td>{{user.fullName}}</td>
+					<td>{{user.role}}</td>
+					<td>
+						<div class="checkboxouter position-relative">
+							<input class="position-absolute w-100 h-100 start-0 top-0 opacity-0" type="checkbox"
+								[checked]="user.isValid" (change)="handleUserChanges(user.id)" data-toggle="toggle" />
+							<label class="checkbox position-absolute m-auto start-50"></label>
+						</div>
+					</td>
+					<td><app-delete-user-modal [users]="this.users" [viewUsers]="this.viewUsers"
+							[userId]="user.id" (handleUserPageChangesEvent)="handleUserPageChanges(this.pageNumberUser)"></app-delete-user-modal></td>
+				</tr>
+		</table>
+		<div class="row">
+			<div class="col-10">
+				<button *ngFor="let pageNumber of pageNumbersUsers" class="pages"
+					(click)="handleUserPageChanges(pageNumber)">{{pageNumber}}</button>
+			</div>
+			<div class="col-2">
+				<app-register-user-modal [users]="this.users" [viewUsers]="this.viewUsers" (handleUserPageChangesEvent)="handleUserPageChanges(this.pageNumberUser)"></app-register-user-modal>
+			</div>
+		</div>
+	</form>
+</div>

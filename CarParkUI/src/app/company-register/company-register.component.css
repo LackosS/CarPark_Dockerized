@@ -1,0 +1,144 @@
+/*#### Form ####*/
+.registerForm {
+  background: linear-gradient(to right, #252525, #383535, #272727);
+  border: 1px solid #191919;
+  border-radius: 1.4em;
+  box-shadow: 0 5px 10px 5px rgba(37, 37, 37, 0.3);
+  max-height: 30em;
+  max-width: 23em;
+  min-width: 12em;
+}
+
+.inset {
+  border-top: 1px solid #FFbb00;
+  padding: 1.2em;
+}
+
+/*#### Logo with text ####*/
+#caricon {
+  color: #FFbb00;
+  max-height: 1em;
+  max-width: 1em;
+  padding: 0.1rem;
+}
+
+.registerForm h1 {
+  text-align: center;
+  padding-bottom: 0.5rem;
+  min-width: 2em;
+}
+
+#litheader {
+  width: 3em;
+}
+
+/*#### Input fields ####*/
+.registerForm input[type=text],
+input[type=password] {
+  background: linear-gradient(#1f2124, #27292c);
+  border: 1px solid #252525;
+  border-radius: .3em;
+  box-shadow: 0 1px 0 #ffffff1a;
+  font-size: 13px;
+  padding: 0.5rem 0.5rem;
+}
+
+.registerForm label[for=agree],
+.registerForm label[for=already] {
+  color: #bbb;
+  display: inline-block;
+  line-height: 85%;
+  vertical-align: top;
+  padding: 0.3rem 0 0 0.4rem;
+}
+
+.registerForm input[type=text]:hover:not([disabled]),
+.registerForm input[type=text]:focus,
+.registerForm input[type=password]:hover:not([disabled]),
+.registerForm input[type=password]:focus {
+  background: #27292c;
+}
+
+/*#### Checkbox ####*/
+.registerForm input[type="checkbox"] {
+  cursor: pointer;
+  z-index: 1;
+}
+
+.checkboxouter {
+  height: 1.2em;
+  width: 1.2em;
+  border-radius: 3px;
+  background-color: #252525;
+  display: inline-block;
+  border: 2px solid #555;
+}
+
+.checkbox {
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+  background-color: transparent;
+  height: 0.6em;
+  width: 0.3em;
+  transform: rotate(45deg);
+  transform-origin: -35% 30%;
+  transition: all 0.2s;
+}
+
+.registerForm input[type="checkbox"]:checked~.checkbox {
+  transition: all 0.3s;
+  border-bottom: 2px solid #ffcc00;
+  border-right: 2px solid #ffcc00;
+}
+
+.registerForm a {
+  color: #FFbb00;
+}
+
+/*#### Button ####*/
+#buttonContainer {
+  width: 80%;
+  padding: 0.2rem;
+  margin-top: -0.9rem;
+}
+
+.signup {
+  background: #fb0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 1.3em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 10px 10px rgba(255, 255, 255, 0.1);
+  color: #853c01;
+  cursor: pointer;
+  font-size: 85%;
+  height: 30%;
+  padding: 0.5rem 0.5rem;
+  margin-top: 0.2rem;
+  font-weight: 900;
+}
+
+.already {
+  margin-top: 5%;
+  font-weight: 180;
+  font-size: 75%;
+}
+
+.agree {
+  font-size: 80%;
+  width: 90%;
+}
+
+.already a:hover,
+.already a:focus {
+  color: rgb(255, 205, 0)
+}
+
+.signup:hover,
+.submit:hover,
+.signup:focus,
+.submit:focus {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -10px 10px rgba(255, 255, 255, 0.3);
+}
+
+.signup:disabled {
+  background: rgb(156, 115, 2);
+}

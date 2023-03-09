@@ -1,0 +1,55 @@
+/*#### Basic Design ####*/
+table{
+    background-color: rgba(37, 37, 37,0.2);
+    width: 50%;
+    height: 200vh;
+    color:#ffbb00;
+}
+h2{
+    color:#ffbb00;
+}
+.bi-x-circle{
+    color:#ffbb00;
+}
+.pages{
+    background: none;
+    background-color: none;
+    border: none;
+    color:#ffbb00;
+}
+tr:nth-child(odd){
+    color:white;
+}
+.search{
+    height: 25px;
+    border: none;
+    background-color: #383838;
+    color:white;
+}
+span{
+    color:#ffbb00;
+}
+.checkboxouter {
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 3px;
+    background-color: #252525;
+    display: inline-block;
+    border: 2px solid #555;
+  }
+  
+  .checkbox {
+    border-bottom: 2px solid #333;
+    border-right: 2px solid #333;
+    background-color: transparent;
+    height: 0.6em;
+    width: 0.3em;
+    transform: rotate(45deg);
+    transform-origin: -35% 30%;
+    transition: all 0.2s;
+  }
+input[type="checkbox"]:checked~.checkbox {
+    transition: all 0.3s;
+    border-bottom: 2px solid #ffcc00;
+    border-right: 2px solid #ffcc00;
+}

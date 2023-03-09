@@ -1,0 +1,77 @@
+<nav data-test-id="navbar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="d-flex justify-content-center align-items-center mb-1 mb-md-0 text-white text-decoration-none">
+        <i class="bi-car-front"></i>
+        <span class="fs-4 mx-1 d-md-flex d-none">{{currUser?.companyName}}</span>
+    </a>
+    </button>
+    <hr style="color: #ffbb00">
+    <ul data-test-id="navbar-ul" class="nav nav-pills flex-column mb-auto">
+        <li *ngIf='currUser?.role=="SystemAdmin" || currUser?.role=="CompanyAdmin"'>
+            <a data-test-id="navbar-home" [routerLink]="['/admin/home']" [routerLinkActive]="['active']" class="d-md-flex nav-link" aria-current="page">
+                <i class="bi bi-house-door"></i>
+                <span class="d-md-flex d-none px-1">Home</span>
+            </a>
+        </li>
+        <li *ngIf='currUser?.role=="SystemAdmin"'>
+            <a data-test-id="navbar-companies" href="#" class="d-md-flex nav-link" [routerLink]="['/admin/system/companies']" [routerLinkActive]="['active']">
+                <i class="bi bi-buildings"></i>
+                <span class="d-md-flex d-none px-1">Companies</span>
+            </a>
+        </li>
+        <li *ngIf='currUser?.role=="CompanyAdmin"'>
+            <a data-test-id="navbar-users" href="#" class="d-md-flex nav-link" [routerLink]="['/admin/company/users']" [routerLinkActive]="['active']">
+                <i class="bi bi-people"></i>
+                <span class="d-md-flex d-none px-1">Users</span>
+            </a>
+        </li>
+        <li *ngIf='currUser?.role=="CompanyAdmin"'>
+            <a data-test-id="navbar-parkinghouses" href="#" class="d-md-flex nav-link" [routerLink]="['/admin/company/parkinghouses']" [routerLinkActive]="['active']">
+                <i class="bi bi-p-circle"></i>
+                <span class="d-md-flex d-none px-1">Parkinghouses</span>
+            </a>
+        </li>
+        <li *ngIf='currUser?.role=="CompanyAdmin"'>
+            <a data-test-id="navbar-slots" href="#" class="d-md-flex nav-link" [routerLink]="['/admin/company/slots']" [routerLinkActive]="['active']">
+                <i class="bi bi-justify"></i>
+                <span class="d-md-flex d-none px-1">Slots</span>
+            </a>
+        </li>
+        <li *ngIf='currUser?.role!="SystemAdmin"'>
+            <a data-test-id="navbar-reservations" href="#" class="d-md-flex nav-link" [routerLink]="['/myreservations']" [routerLinkActive]="['active']">
+                <i class="bi bi-calendar"></i>
+                <span class="d-md-flex d-none px-1">My reservations</span>
+            </a>
+        </li>
+        <li *ngIf='currUser?.role!="SystemAdmin"'>
+            <a data-test-id="navbar-reserve" href="#" class="navbar-reserve d-md-flex nav-link" [routerLink]="['/reserve']" [routerLinkActive]="['active']">
+                <i class="bi bi-calendar-plus"></i>
+                <span class="d-md-flex d-none px-1">Reserve</span>
+            </a>
+        </li>
+    </ul>
+    <span class="navbar-text profile-menu mb-0 d-md-flex d-none">Profile</span>
+    <ul class="nav nav-pills flex-column">
+        <li><a data-test-id="navbar-change-password" class="navbar-change-password d-md-flex nav-link" [routerLink]="['/change-password']">
+                <i class="bi bi-person-lock fs-5"></i>
+                <span class="d-md-flex d-none px-1 my-auto">Change password</span>
+            </a>
+        </li>
+        <li>
+            <a data-test-id="navbar-sign-out" class="d-md-flex nav-link" [routerLink]="['/login']" (click)="logout()">
+                <i class="bi bi-box-arrow-in-right fs-5"></i>
+                <span class="d-md-flex d-none px-1 my-auto">Sign out</span>
+            </a>
+        </li>
+    </ul>
+    <hr style="color: #ffbb00">
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="d-flex flex-row text-decoration-none text-white">
+            <i class="bi bi-person-circle fs-3"></i>
+            <div>
+                <div class="flex-row d-md-flex d-none mx-1">{{currUser?.name}}</div>
+                <div class="flex-row d-md-flex d-none mx-1">{{currUser?.role}}</div>
+            </div>
+        </div>
+    </div>
+</nav>

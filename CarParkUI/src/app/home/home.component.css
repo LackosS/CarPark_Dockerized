@@ -1,0 +1,16 @@
+h2 {
+    color: #ffbb00;
+}
+
+.card {
+    /*background-image: linear-gradient(to bottom right, #dcdadc, #58A4B0);*/
+    background-image: linear-gradient(to bottom right, #c4c3c3, #989C94);
+    /*background-color: rgba(255, 187, 0,0.9);*/
+    color: black;
+    border: none;
+    font-weight: bold;
+}
+
+.bi{
+    font-size: 50px;
+}

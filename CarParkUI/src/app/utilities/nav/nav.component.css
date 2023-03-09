@@ -1,0 +1,24 @@
+/*#### Nav ####*/
+nav {
+    background: linear-gradient(to right, #252525, #313030); 
+    border-bottom: solid 2px #ffbb00;
+    box-shadow: 0 0 10px #252525;
+    height: 100%;
+}
+/*#### Nav-Links ####*/
+.nav-link{
+    color: white;
+}
+.nav-link.active{
+    background-color: hsl(44, 100%, 50%);
+    color: #252525;
+}
+/*#### Icons ####*/
+.bi-car-front, .bi-person-circle {
+    font-size: 2.2rem;
+    color: #ffbb00;
+}
+/*#### Profile-Menu ####*/
+.profile-menu{
+    border-bottom:1px solid rgba(255, 187, 0,0.3);
+}

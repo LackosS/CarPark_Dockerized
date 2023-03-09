@@ -1,0 +1,66 @@
+/* #### MODAL #### */
+.modal-content{
+    background: linear-gradient(#1f2124, #27292c);
+    border-radius: 20px;
+    margin-top: 60px;
+}
+.backdrop-blur{
+    backdrop-filter: blur(5px);
+}
+.modal-header{
+    border-bottom: 1px solid #ffbb00;
+}
+.modal-footer{
+    border-top: 1px solid #ffbb00;
+}
+.modal-title{
+    color: #fb0;
+}
+
+/* #### FORM #### */
+.userRegisterForm input[type=text],
+.userRegisterForm input[type=password] {
+    background: linear-gradient(#1f2124, #27292c);
+    border: 1px solid #252525;
+    border-radius: .3em;
+    box-shadow: 0 1px 0 #ffffff1a;
+    color: #FFF;
+    font-size: 13px;
+    padding: 0.5rem 0.5rem;
+    width: 100%;
+}
+/* #### INPUT FIELDS #### */
+.userRegisterForm input[type=text]:hover:not([disabled]),
+.userRegisterForm input[type=text]:focus,
+.userRegisterForm input[type=password]:hover:not([disabled]),
+.userRegisterForm input[type=password]:focus,
+.userRegisterForm input[type=text]:active .userRegisterForm input[type=password]:active,
+.userRegisterForm input[type=text]:disabled .userRegisterForm input[type=password]:disabled {
+    background: #27292c;
+}
+
+#inputPosition {
+    background: linear-gradient(#1f2124, #27292c);
+    border: 1px solid #252525;
+    border-radius: .3em;
+    box-shadow: 0 1px 0 #ffffff1a;
+    color: white;
+    font-size: 13px;
+    padding: 0.5rem 0.5rem;
+}
+
+/*#### Select ####*/
+option{
+    background: #252525;
+    color: #FFF;
+}
+
+/*#### Button ####*/
+.user-footer button{
+    color: #ffbb00 !important;
+    border: 1px solid #ffbb00 !important;
+}
+.user-footer button:hover{
+    background: #ffbb00 !important;
+    color: #000 !important;
+}

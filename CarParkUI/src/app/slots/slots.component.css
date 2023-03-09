@@ -1,0 +1,28 @@
+span{
+    color:#ffbb00;
+}
+h2{
+    color:#ffbb00;
+}
+
+/*#### Select ####*/
+.inputPosition {
+    background:#696b6e;
+    border: 1px solid #252525;
+    border-radius: .3em;
+    box-shadow: 0 2px 0 #ffffff1a;
+    color: white;
+    font-size: 13px;
+    padding: 0.5rem 0.5rem;
+}
+
+
+option{
+    background: #252525;
+    color: #FFF;
+}
+.slot{
+    width: 80px;
+    background-image: linear-gradient(to bottom right, #c4c3c3, #989C94);
+    border-radius: 10px;
+}

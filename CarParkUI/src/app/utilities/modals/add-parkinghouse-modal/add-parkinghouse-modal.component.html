@@ -1,0 +1,25 @@
+<ng-template #addParkinghouse let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add parkinghouse</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body" data-test-id="parkinghouse-add-modal">
+        <form class="addParkinghouseForm" [formGroup]="formAddParkinghouse">
+            <div>
+                <div class="p-2">
+                    <input formControlName="name" class="mb-1" type="text" id="name" name="name" placeholder="Name">
+                    <input formControlName="levels" class="mb-1" type="number" id="levels" name="levels"
+                        placeholder="Levels">
+                    <input formControlName="slots" class="mb-1" type="number" id="slots" name="slots" placeholder="Slots">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer user-footer justify-content-center">
+        <button data-test-id="parkinghouse-add-modal-cancel" type="button" class="btn btn-outline-secondary" (click)="modal.close('cancel click')">Cancel</button>
+        <button data-test-id="parkinghouse-add-modal-submit" class="register" type="submit" class="btn" (click)="addParkingHouse()">Add</button>
+    </div>
+</ng-template>
+<div class="user-footer">
+    <button data-test-id="parkinghouse-table-add-parkinghouse" class="btn float-end" (click)="open(addParkinghouse)">Add parkinghouse</button>
+</div>

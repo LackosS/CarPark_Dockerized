@@ -1,0 +1,36 @@
+<ng-template #userRegister let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">User registration</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body" data-test-id="user-add-modal">
+        <form class="userRegisterForm" [formGroup]="formUserRegister">
+            <div>
+                <div class="d-flex flex-row gap-2 p-1 px-2">
+                    <input formControlName="fullname" type="text" id="fullname" name="fullname" placeholder="Full name">
+                    <select formControlName="role" id="inputPosition" name="role" class="form-select">
+                        <option>CompanyAdmin</option>
+                        <option>Boss</option>
+                        <option selected>Employee</option>
+                    </select>
+                </div>
+                <div class="p-2">
+                    <input formControlName="username" class="mb-1" type="text" id="username" name="username"
+                        placeholder="Username">
+                    <input formControlName="password" class="mb-1" type="password" id="password" name="password"
+                        placeholder="Password">
+                    <input formControlName="confirmPassword" type="password" id="confirmPassword" name="confirmPassword"
+                        placeholder="Confirm password">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer user-footer justify-content-center">
+        <button data-test-id="user-add-modal-cancel" type="button" class="btn btn-outline-secondary" (click)="modal.close('cancel click')">Cancel</button>
+        <button data-test-id="user-add-modal-submit" class="register" type="submit" class="btn" 
+            (click)="registerUser()">Register</button>
+    </div>
+</ng-template>
+<div class="user-footer">
+    <button data-test-id="user-table-add-user" class="btn float-end" (click)="open(userRegister)">Register user</button>
+</div>

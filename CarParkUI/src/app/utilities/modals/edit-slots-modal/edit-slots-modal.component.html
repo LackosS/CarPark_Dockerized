@@ -1,0 +1,27 @@
+<ng-template #editSlots let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit slots</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+    </div>
+    <div class="modal-body" data-test-id="slot-edit-modal">
+        <form class="editSlotsForm" [formGroup]="formEditSlots">
+            <select formControlName="type" id="inputPosition" name="type" class="form-select">
+                <option>Disabled</option>
+                <option>VIP</option>
+                <option>Electric</option>
+                <option selected>Default</option>
+            </select>
+        </form>
+    </div>
+    <div class="modal-footer justify-content-center">
+        <div class="user-footer">
+            <button data-test-id="slot-edit-modal-cancel" type="button" class="mx-2 btn btn-outline-secondary"
+                (click)="modal.close('cancel click')">Cancel</button>
+            <button data-test-id="slot-edit-modal-save" class="save" type="submit" class="btn" (click)="modal.close(updateSlots())">Save</button>
+        </div>
+        <button data-test-id="slot-edit-modal-delete" type="button" class="btn btn-danger" (click)="modal.close(deleteSlots())">Delete</button>
+    </div>
+</ng-template>
+<div class="user-footer">
+    <button data-test-id="slot-edit-modal-open" class="btn float-end" (click)="open(editSlots)">Edit slots</button>
+</div>
