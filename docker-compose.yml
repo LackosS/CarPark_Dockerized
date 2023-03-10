@@ -5,7 +5,7 @@ services:
     container_name: carparksystem
     build:
       context: CarParkSystem
-      dockerfile: \CarParkSystem\Dockerfile
+      dockerfile: /CarParkSystem/Dockerfile
     ports:
       - "7154:80"
     depends_on:
@@ -19,6 +19,15 @@ services:
     environment:
         SA_PASSWORD: "S3cur3P@ssW0rd!"
         ACCEPT_EULA: "Y"
+  carparksystemtests:
+    container_name: carparksystemtests
+    build:
+        context: CarParkSystem
+        dockerfile: /CarParkSystem.Tests/Dockerfile
+    ports:
+       - "7155:80"
+    depends_on:
+       - carparksystem
   carparkui:
     container_name: carparkui
     build:
