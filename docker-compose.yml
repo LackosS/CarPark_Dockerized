@@ -5,7 +5,7 @@ services:
     container_name: carparksystem
     build:
       context: CarParkSystem
-      dockerfile: /CarParkSystem/Dockerfile
+      dockerfile: CarParkSystem/Dockerfile
     ports:
       - "7154:80"
     depends_on:
@@ -35,4 +35,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4200:80"
-    
+  cypress:
+    image: cypress/included:12.7.0
+    container_name: cypress
+    entrypoint: npx cypress run
+    working_dir: /CarParkUI
+    volumes:
+      - ./:/CarParkUI
+    environment:
+      - CYPRESS_baseUrl=http://carparkui:80
+    depends_on:
+         - carparkui
