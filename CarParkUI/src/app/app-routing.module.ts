@@ -51,6 +51,9 @@ const routes: Routes = [
   {
     path: 'reserve', component: ReserveComponent,
     canActivate: [LoggedInGuard, ActivatedAccountGuard]
+  },
+    {
+    path: '**', component: LoginComponent,
   }
 
 ];
