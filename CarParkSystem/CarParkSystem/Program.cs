@@ -57,8 +57,15 @@ using (var scope = app.Services.CreateScope())
     var dbContext = scope.ServiceProvider
         .GetRequiredService<CarParkDbContext>();
 
-    // Here is the migration executed
-    dbContext.Database.Migrate();
+    // Here is the migration executed 
+    try
+    {
+       dbContext.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("The database is exist.");
+    }
 }
 
 app.UseCors(
