@@ -3,6 +3,7 @@ using Moq;
 using CarParkSystem.Controllers;
 using CarParkSystem.Persistence.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Xunit;
 
 namespace CarParkSystem.Tests
 {

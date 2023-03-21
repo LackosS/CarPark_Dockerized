@@ -9,14 +9,13 @@ COPY ["CarParkSystem.Tests/CarParkSystem.Tests.csproj", "CarParkSystem.Tests/"]
 COPY ["CarParkSystem/CarParkSystem.csproj", "CarParkSystem/"]
 COPY ["CarParkSystem.Persistence/CarParkSystem.Persistence.csproj", "CarParkSystem.Persistence/"]
 RUN dotnet restore "CarParkSystem.Tests/CarParkSystem.Tests.csproj"
+
 COPY . .
 WORKDIR "/src/CarParkSystem.Tests"
+
 RUN dotnet build "CarParkSystem.Tests.csproj" -c Release -o /app/build
+RUN dotnet test "CarParkSystem.Tests.csproj"  -c Release -o /app/test
 
-FROM build AS publish
-RUN dotnet publish "CarParkSystem.Tests.csproj" -c Release -o /app/publish
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "CarParkSystem.Tests.dll"]
+FROM build
+WORKDIR "/src/CarParkSystem.Tests"
+ENTRYPOINT ["dotnet","test","-verbosity:q", "-noconlog","CarParkSystem.Tests.csproj"]

@@ -15,5 +15,4 @@ RUN rm /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/
 
 COPY --from=build /usr/src/app/dist/car-park-ui /usr/share/nginx/html
-
 EXPOSE 80
