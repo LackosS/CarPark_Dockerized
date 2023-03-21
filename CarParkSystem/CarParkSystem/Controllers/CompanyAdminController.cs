@@ -1,6 +1,8 @@
 ﻿using CarParkSystem.Interfaces;
 using CarParkSystem.Persistence.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace CarParkSystem.Controllers
 {
@@ -24,26 +26,28 @@ namespace CarParkSystem.Controllers
         
         [HttpPost]
         [Route("AddParkingHouse")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult AddParkingHouse(ParkingHouseDTO p)
         {
             return Ok(_parkingHouseService.AddParkingHouse(p));
         }
         [HttpPost]
         [Route("AddLevel")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult AddLevel(LevelDTO l)
         {
              return Ok(_levelService.AddLevel(l));
         }
         [HttpPost]
         [Route("AddSlot")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult AddSlot(SlotDTO s)
         {
              return Ok(_slotService.AddSlot(s));
         }
         [HttpPost]
         [Route("AddSlots")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult AddSlots(SlotDTO s)
         {
             for (int i = 0; i < s.InitialNumber; i++)
@@ -55,7 +59,7 @@ namespace CarParkSystem.Controllers
         }
         [HttpPatch]
         [Route("UpdateUsers")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult UpdateUsers(UserDTO user)
         {
             _userService.UpdateUser(user);
@@ -63,7 +67,7 @@ namespace CarParkSystem.Controllers
         }
         [HttpPatch]
         [Route("UpdateParkingHouses")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult UpdateParkingHouses(ParkingHouseDTO parkingHouse)
         {
             _parkingHouseService.UpdateParkingHouse(parkingHouse);
@@ -71,6 +75,7 @@ namespace CarParkSystem.Controllers
         }
         [HttpPatch]
         [Route("UpdateLevels")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult UpdateLevels(LevelDTO level)
         {
             _levelService.UpdateLevel(level);
@@ -78,6 +83,7 @@ namespace CarParkSystem.Controllers
         }
         [HttpPatch]
         [Route("UpdateSlots")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]        
         public IActionResult UpdateSlots(List<SlotDTO> slots)
         {
             foreach (var slot in slots)
@@ -88,35 +94,35 @@ namespace CarParkSystem.Controllers
         }
         [HttpGet]
         [Route("GetUsers/{companyId}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult GetUsers(int companyId)
         {
             return Ok(_userService.GetAllUsers(companyId));
         }
         [HttpGet]
         [Route("GetReservations/{userId}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult GetReservations(string userId)
         {
             return Ok(_reservationService.GetAllReservations(userId));
         }
         [HttpGet]
         [Route("GetParkingHouses/{companyId}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin,Boss,Employee")]
         public IActionResult GetParkingHouses(int companyId)
         {
             return Ok(_parkingHouseService.GetAllParkingHouses(companyId));
         }
         [HttpGet]
         [Route("GetLevels/{parkingHouseId}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin,Boss,Employee")]
         public IActionResult GetLevels(int parkingHouseId)
         {
             return Ok(_levelService.GetAllLevels(parkingHouseId));
         }
         [HttpGet]
         [Route("GetSlots/{levelId}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin,Boss,Employee")]
         public IActionResult GetSlots(int levelId)
         {
             return Ok(_slotService.GetAllSlots(levelId));
@@ -124,6 +130,7 @@ namespace CarParkSystem.Controllers
 
         [HttpDelete]
         [Route("DeleteLevel/{id}")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult DeleteLevel(int id)
         {
             _levelService.DeleteLevel(id);
@@ -131,7 +138,7 @@ namespace CarParkSystem.Controllers
         }
         [HttpDelete]
         [Route("DeleteParkingHouse/{id}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult DeleteParkingHouse(int id)
         {
             _parkingHouseService.DeleteParkingHouse(id);
@@ -139,7 +146,7 @@ namespace CarParkSystem.Controllers
         }
         [HttpPost]
         [Route("DeleteSlots")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult DeleteSlots(List<SlotDTO>slots)
         {
             foreach (var slot in slots)
@@ -151,7 +158,7 @@ namespace CarParkSystem.Controllers
 
         [HttpDelete]
         [Route("DeleteUser/{id}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "CompanyAdmin")]
         public IActionResult DeleteUser(string id)
         {
             _userService.DeleteUser(id);

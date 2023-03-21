@@ -20,6 +20,9 @@ export class AuthService {
   login(login: Login): Observable<any> {
     return this.http.post<any>(Constans.loginUrl, login);
   }
+  getToken(): string | null {
+    return sessionStorage.getItem('carParkUserToken') || localStorage.getItem('carParkUserToken');
+  }
   isLoggedIn() {
     const currUser = this.getCurrentUser();
     return currUser !== null && currUser.exp > Date.now() / 1000;

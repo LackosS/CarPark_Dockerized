@@ -25,7 +25,7 @@ namespace CarParkSystem.Controllers
 
         [HttpPatch]
         [Route("UpdateCompanies")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin")]
         public IActionResult UpdateCompanies(CompanyDTO company)
         {
             _companyService.UpdateCompany(company);
@@ -34,7 +34,7 @@ namespace CarParkSystem.Controllers
 
         [HttpDelete]
         [Route("DeleteCompany/{id}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin")]
         public ActionResult DeleteCompany(int id)
         {
             _companyService.DeleteCompany(id);
@@ -43,28 +43,28 @@ namespace CarParkSystem.Controllers
 
         [HttpGet]
         [Route("GetCompanies")]
-        //[Authorize(Roles = "SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin")]
         public ActionResult<List<CompanyDTO>> GetCompanies()
         {
             return Ok(_companyService.GetAllCompany());
         }
         [HttpGet]
         [Route("GetUsers")]
-        //[Authorize(Roles = "SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin")]
         public ActionResult<List<UserDTO>> GetUsers()
         {
             return Ok(_userService.GetAllUsers());
         }
         [HttpGet]
         [Route("GetParkingHouses")]
-        //[Authorize(Roles = "SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin")]
         public ActionResult<List<ParkingHouseDTO>> GetParkingHouses()
         {
             return Ok(_parkingHouseService.GetAllParkingHouses());
         }
         [HttpGet]
         [Route("GetReservations")]
-        //[Authorize(Roles = "SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin")]
         public ActionResult<List<ReservationDTO>> GetReservations()
         {
             return Ok(_reservationService.GetAllReservations());

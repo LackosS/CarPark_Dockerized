@@ -1,5 +1,6 @@
 ﻿using CarParkSystem.Interfaces;
 using CarParkSystem.Persistence.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarParkSystem.Controllers
@@ -24,35 +25,37 @@ namespace CarParkSystem.Controllers
 
         [HttpPost]
         [Route("AddReservation")]
-        //[Authorize(Roles="SystemAdmin,asd")] //több roles
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin,CompanyAdmin,Boss,Employee")]
         public IActionResult AddReservation(ReservationDTO r)
         {
             return Ok(_reservationService.AddReservation(r));
         }
         [HttpDelete]
         [Route("DeleteReservation/{id}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin,CompanyAdmin,Boss,Employee")]
         public IActionResult DeleteReservation(int id)
         {
             _reservationService.DeleteReservation(id);
             return Ok();
         }
-        //[HttpGet("{userId}")] //ezzel próbáljam és akkor /userId
+
         [HttpGet]
         [Route("GetReservations/{userId}")]
-        //[Authorize(Roles="SystemAdmin")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin,CompanyAdmin,Boss,Employee")]
         public IActionResult GetReservations(string userId)
         {
             return Ok(_reservationService.GetAllReservations(userId));
         }
         [HttpGet]
         [Route("IsUserHasReservation/{userId}/{date}")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin,CompanyAdmin,Boss,Employee")]
         public IActionResult IsUserHasReservation(string userId, string date)
         {
             return Ok(_reservationService.IsUserHasReservation(userId, date));
         }
         [HttpGet]
         [Route("IsSlotFree/{id}/{date}")]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme, Roles = "SystemAdmin,CompanyAdmin,Boss,Employee")]
         public IActionResult IsSlotFree(int id, string date)
         {
             return Ok(_slotService.IsSlotFree(id, date));

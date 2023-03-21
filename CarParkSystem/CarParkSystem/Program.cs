@@ -6,9 +6,10 @@ using CarParkSystem.Persistence.Models;
 using CarParkSystem.Persistence.Records;
 using CarParkSystem.Persistence.Repositories;
 using CarParkSystem.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Net;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,25 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = true;
 }).AddEntityFrameworkStores<CarParkDbContext>();
+
+builder.Services.AddAuthentication(option =>
+{
+    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["ApplicationSettings:Client_URL"].ToString(),
+        ValidIssuer = builder.Configuration["ApplicationSettings:Client_URL"].ToString(),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["ApplicationSettings:JWT_Secret"]))
+    };
+});
+
 builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("ApplicationSettings"));
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllersWithViews();
@@ -48,6 +68,7 @@ builder.Services.AddScoped<ISlotService,SlotService>();
 builder.Services.AddScoped<IReservationService,ReservationService>();
 
 builder.Services.AddScoped<ICustomMapper, CustomMapper>();
+
 
 var app = builder.Build();
 var key = Encoding.UTF8.GetBytes(builder.Configuration["ApplicationSettings:JWT_Secret"].ToString());
@@ -74,12 +95,6 @@ app.UseCors(
         .AllowAnyMethod()
 );
 
-app.UseCors(
-    options => options.WithOrigins("http://localhost:7154")
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-);
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -92,6 +107,7 @@ app.UseSwaggerUI();
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 

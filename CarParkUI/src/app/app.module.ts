@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CompanyRegisterComponent } from './company-register/company-register.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './utilities/nav/nav.component';
@@ -38,6 +38,7 @@ import { ReservationsTableComponent } from './utilities/tables/reservations-tabl
 import { ReserveComponent } from './reserve/reserve.component';
 import { DeleteReservationModalComponent } from './utilities/modals/delete-reservation-modal/delete-reservation-modal.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,13 @@ import { ReservationsComponent } from './reservations/reservations.component';
     AddSlotModalComponent,
     DeleteReservationModalComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -182,6 +182,8 @@ namespace CarParkSystem.Controllers
                             new Claim("companyName", company.Name),
                             new Claim("companyIsValid", company.IsValid.ToString())
                         }),
+                        Audience = _appSettings.Client_URL,
+                        Issuer = _appSettings.Client_URL,
                         Expires = DateTime.UtcNow.AddDays(1),
                         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), SecurityAlgorithms.HmacSha256Signature)
                     };
