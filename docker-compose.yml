@@ -35,11 +35,12 @@ services:
       - "4200:80"
   cypress:
     container_name: cypress
+    network_mode: host
     build:
       context: CarParkUI
       dockerfile: cypress/Dockerfile
     environment:
-      - CYPRESS_baseUrl=http://host.docker.internal:4200
+      - CYPRESS_baseUrl=http://localhost:4200
     depends_on:
       - carparkui
       - carparksystem
