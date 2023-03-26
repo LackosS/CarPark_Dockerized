@@ -1,6 +1,6 @@
 import { CypressHelper } from "cypress/cypress.helper"
 
-describe('company-user-navbar spec', () => {
+describe('company-admin-user spec', () => {
   it('passes', () => {
     cy.visit('/login')
     cy.get('[data-test-id="login-form"]').should('be.visible')
