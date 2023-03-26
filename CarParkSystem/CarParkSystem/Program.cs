@@ -85,7 +85,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Console.WriteLine("The database is exist.");
+        Console.WriteLine("Migration exception: "+ex.Message);
     }
 }
 

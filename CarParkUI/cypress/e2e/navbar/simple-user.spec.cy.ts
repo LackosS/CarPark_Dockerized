@@ -4,7 +4,7 @@ describe('simple-user spec', () => {
   it('passes', () => {
     cy.visit('/login')
     cy.get('[data-test-id="login-form"]').should('be.visible')
-    CypressHelper.login('user5', '123Lackos123')
+    CypressHelper.login('user1', '123Lackos123')
     cy.get('[data-test-id="navbar"]').should('be.visible')
     cy.get('[data-test-id="navbar-home"]').should('not.exist')
     cy.get('[data-test-id="navbar-companies"]').should('not.exist')

@@ -6,6 +6,7 @@ export class Constans{
     static readonly registerUrl = this.basicUrl + "/UserProfile/RegisterCompany";
     static readonly changePasswordUrl = this.basicUrl + "/UserProfile/ChangePassword";
     static readonly registerUserUrl = this.basicUrl + "/UserProfile/RegisterUser";
+    static readonly registerSysAdminUrl = this.basicUrl + "/UserProfile/RegisterSystemAdmin";
 
     //SYSTEM-ADMIN URLS
     static readonly getCompanies = this.basicUrl+"/SystemAdmin/GetCompanies";

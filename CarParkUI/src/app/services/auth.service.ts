@@ -59,4 +59,7 @@ export class AuthService {
     }
     return null;
   }
+  registerSystemAdmin(){
+    return this.http.post<any>(Constans.registerSysAdminUrl, {});
+  }
 }

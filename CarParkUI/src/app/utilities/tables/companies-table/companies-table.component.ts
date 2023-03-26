@@ -25,6 +25,7 @@ export class CompaniesTableComponent implements OnInit{
           this.pageNumbersCompanies.push(++i);
         }
         this.viewCompanies = this.companies.slice(0, 15);
+        this.viewCompanies.splice(this.viewCompanies.findIndex(company => company.id == 1), 1);
       }
     );
   }

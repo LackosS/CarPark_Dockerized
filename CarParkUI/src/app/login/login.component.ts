@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private toastService: ToastService) { }
 
   ngOnInit(): void {
+    this.authService.registerSystemAdmin().subscribe();
     this.currUser = this.authService.getCurrentUser();
     this.form = this.fb.group({
       username: ['', Validators.required],

@@ -28,6 +28,7 @@ export class UsersTableComponent implements OnInit{
           this.pageNumbersUsers.push(++i);
         }
         this.viewUsers = this.users.slice(0, 15);
+        this.viewUsers.splice(this.viewUsers.findIndex(user => user.id == this.currUser?.userId), 1);
       }
     );
   }
