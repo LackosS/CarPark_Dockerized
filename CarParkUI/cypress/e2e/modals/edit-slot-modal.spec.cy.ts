@@ -16,7 +16,6 @@ describe('edit-slot-modal spec', () => {
 
     cy.get('[data-test-id="slot-edit-modal"]').should('be.visible')
     cy.get('[data-test-id="slot-edit-modal-save"]').click()
-    cy.get('[data-test-id="slot-edit-modal-delete"]').should('be.visible')
     cy.get('[data-test-id="slot-edit-modal-delete"]').click()
     cy.get('[data-test-id="slot-edit-modal-open"]').click()
     cy.get('[data-test-id="slot-edit-modal-cancel"]').should('be.visible')
