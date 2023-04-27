@@ -43,7 +43,7 @@ describe('navbar-navigation spec', () => {
     cy.get('[data-test-id="navbar-sign-out"]').click()
 
     //Simple-User
-    CypressHelper.login('user5', '123Lackos123')
+    CypressHelper.login('user1', '123Lackos123')
     cy.get('[data-test-id="navbar"]').should('be.visible')
 
     cy.get('[data-test-id="navbar-reservations"]').should('be.visible')
