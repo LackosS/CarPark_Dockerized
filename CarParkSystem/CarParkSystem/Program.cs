@@ -81,7 +81,14 @@ using (var scope = app.Services.CreateScope())
     // Here is the migration executed 
     try
     {
-       dbContext.Database.Migrate();
+       while(!dbContext.Database.CanConnect()){
+            try{
+                dbContext.Database.Migrate();
+            }
+            catch(Exception ex){
+                Console.WriteLine("Migration exception: "+ex.Message);
+            }
+        }
     }
     catch (Exception ex)
     {
@@ -90,7 +97,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseCors(
-    options => options.WithOrigins("http://localhost:4200")
+    options => options.WithOrigins(builder.Configuration["ApplicationSettings:Client_URL"].ToString())
         .AllowAnyHeader()
         .AllowAnyMethod()
 );

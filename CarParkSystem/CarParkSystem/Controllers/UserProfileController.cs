@@ -19,15 +19,17 @@ namespace CarParkSystem.Controllers
         private RoleManager<IdentityRole> _roleManager;
         private Persistence.CarParkDbContext _context;
         private readonly ApplicationSettings _appSettings;
+        private readonly IConfiguration _configuration;
 
 
-        public UserProfileController(UserManager<User> userManager, SignInManager<User> signInManager, IOptions<ApplicationSettings> appSettings, RoleManager<IdentityRole> rolemanager, Persistence.CarParkDbContext context)
+        public UserProfileController(IConfiguration configuration,UserManager<User> userManager, SignInManager<User> signInManager, IOptions<ApplicationSettings> appSettings, RoleManager<IdentityRole> rolemanager, Persistence.CarParkDbContext context)
         {
             _userManager = userManager;
             _singInManager = signInManager;
             _roleManager = rolemanager;
             _appSettings = appSettings.Value;
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -216,13 +218,13 @@ namespace CarParkSystem.Controllers
             
             u.Role = "SystemAdmin";
             u.FullName = "Csonka László";
-            u.UserName = "csonkal";
+            u.UserName = _configuration["ApplicationSettings:SysAdminName"].ToString();
             u.CompanyId = _context.Company.Where(x => x.Name == "OWNER").FirstOrDefault().Id;            
             u.IsValid = 1;
 
             try
             {
-                var result = await _userManager.CreateAsync(u, "123Lackos123");
+                var result = await _userManager.CreateAsync(u, _configuration["ApplicationSettings:SysAdminPassword"].ToString());
                 if (result == null)
                 {
                     return false;
